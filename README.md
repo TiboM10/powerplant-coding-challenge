@@ -32,7 +32,7 @@ Send payloads:
 ```
 curl -X POST -d @example_payloads/payload1.json -H "Content-Type: application/json" http://localhost:8888/productionplan
 ```
-Where <payload1> can be any of the provided payloads in /example_payloads.
+Where *payload1* can be any of the provided payloads in /example_payloads.
 
 This will return the response as a printed json file of the powerplants and their delivered power.
 
@@ -40,10 +40,10 @@ This will return the response as a printed json file of the powerplants and thei
 
 The algorithm to find an optimal solution works as follows:
 
-Compute the merit order of the powerplants as the fuel cost divided by effiency, adding co2 taxes to the cost of gas-powered plants.
+1. Determine the merit order of the powerplants as the fuel cost divided by effiency, adding co2 taxes to the cost of gas-powered plants.
 Lower merit score means more preferable, wind turbines have cost 0 and thus are most desirable to use.
 
-Compute the power for each powerplant in order of merit, taking into account the Pmin and Pmax.
+2. Compute the power for each powerplant in order of merit, taking into account the Pmin and Pmax.
 If necessary, adapt the power of the previous plant to fit Pmin. A windturbine is either on or off.
 
-Repeat the previous step until the total load is reached, then return the computed power that each plant has to deliver for this solution.
+3. Repeat the previous step until the total load is reached, then return the computed power that each plant has to deliver for this solution.
